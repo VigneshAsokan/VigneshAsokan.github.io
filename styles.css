@@ -1,0 +1,256 @@
+body {
+  font-family: Arial, Helvetica, sans-serif; /* Use Roboto Slab as the primary font */
+  margin: 0;
+  padding: 0; background-image: url('Project/Images/bg.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+  background-size: cover;
+  background-position: center;
+}
+
+header {
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10%;
+}
+
+header a{  
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul {
+  list-style-type: none;
+  text-align: right;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #bb86fc;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 22px;
+  position: relative;
+}
+
+nav ul li a::after{
+  content: '';
+  width: 0;
+  height: 3px;
+  background: #bb86fc;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+nav ul li a:hover::after{
+    width: 100%;
+}
+section {
+  padding: 50px 20px;
+}
+/* About me section */
+
+.about-section {
+  text-align: center;
+  padding: 10px 20%;
+  color: white;
+}
+.about-description {
+  text-align: left;
+  padding-bottom: 20px;
+  font-size: 22px;
+}
+.about-description button{
+  background-color: #bb86fc;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 14px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+
+}
+#projects{
+  color: #fff;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.project {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+.project a {
+    display: block;
+    height: 200px; /* Adjust the height as needed */
+    text-align: center;
+    text-decoration: none;
+}
+
+.project img {
+    width: 100%;
+    height: 100%;
+}
+
+.project:hover {
+  transform: scale(1.05);
+}
+
+.project p {
+  margin-top: 10px; 
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+  text-decoration: none;
+  font-size: 20px;
+}
+.contact{
+  text-align: center;
+  font-size: 25px;
+  color: white;
+}
+.contact a{
+  text-decoration: none;
+  color: #bb86fc;
+}
+.contact p{
+  font-size: 20px;
+}
+.contact img{
+  width: 50px;
+  height: auto;
+  padding: 10px;
+}
+.project-details a{ 
+  margin: 20px 20%;
+  color: #bb86fc;
+  text-decoration: none;
+  font-size: 25px;
+  position: relative;
+  font-weight: bold;
+}
+
+.project-details a::after{
+  content: '';
+  width: 0;
+  height: 3px;
+  background: #bb86fc;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+.project-details a:hover::after{
+    width: 100%;
+}
+
+#project-title
+{
+  padding-top: -20%;
+  font-size: 42px;
+  text-align: center;
+  color: #fff;
+}
+
+#video-container{
+  text-align: center;
+  border: none;
+}
+
+#project-description {
+  padding: 25px 20%;
+  padding-top: 20px;
+  font-size: 24px;
+  text-align: left;
+  color: #fff;
+}
+
+#slideshow{
+  padding: 10px 20%;
+}
+.slideshow-container {
+  max-height: 450px; /* Adjust the maximum height of the slideshow */
+  position: relative;
+  margin: 0 auto;
+  width: 800px; /* Adjust the width of the slideshow */
+  overflow: hidden; /* Hide overflow content */
+  background-color: black;
+  border-radius: 10px;
+}
+
+.slide {
+  width: 800px; /* Ensure the image takes up the entire width of the container */
+  height: 450px; /* Ensure the image takes up the entire height of the container */
+  object-fit: scale-down; /* Resize the image to cover the entire container while preserving aspect ratio */
+  display: block; /* Ensure the image is displayed as a block element */
+  border-radius: 10px;
+}
+
+.indicators-container {
+  text-align: center;
+  border-radius: 10px;
+  padding: auto;
+  padding-top: 10px;
+}
+
+.image-indicator {
+  display: inline-block;
+  width: 20px;
+  height: 11px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.image-indicator.active {
+  background-color: black;
+}
+
+.thumbnails-container {
+  padding-top: 20px;
+}
+
+.thumbnail {
+  width: 150px; 
+  height: 75px; 
+  margin: 0 5px;
+  cursor: pointer;
+  opacity: 0.5; 
+  transition: 0.2s;
+}
+
+.thumbnail.active {
+  opacity: 1; 
+}
+
+.thumbnail:hover {
+  transform: scale(0.9);
+  opacity: 1; 
+}
+
+footer{
+  text-align: center;
+  color: white;
+  background-color: black;
+  padding: 15px;
+}
