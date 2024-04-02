@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projects>
     <project id="1">
+        <thumbnail>Project/Images/hexHordeLogo.png</thumbnail>
+        <title>Hex Horde! (Android)</title>
+        <description>Hex Horde! is a captivating puzzle game developed in Unity, offering a fresh twist on the classic 2048 gameplay by introducing a hexagonal grid. Players strategically merge tiles with matching numbers on the unique hexagon-shaped board, aiming to reach the elusive 2048 tile and beyond. With sleek minimalist design and vibrant colors, each hexagon tile displays a number representing its value. Swiping in six directions, players slide tiles, merging identical ones to double their value. The game's hexagonal grid adds complexity, demanding spatial thinking and careful planning. Featuring multiple modes and customizable themes, Hex Horde! keeps players engaged with its addictive gameplay. As players progress, facing increasingly challenging configurations, they're encouraged to keep going beyond 2048, embarking on an endless journey of tile merging and strategic mastery.</description>
+        <!-- Add more image elements if needed -->
+    </project>
+    <project id="2">
         <thumbnail>Project/Images/VR_thumbnail.png</thumbnail>
         <title>VR-PC Multiplayer</title>
         <description>This project depicts the “Design and Build” process that was carried to develop a cross-platform co-op game between the Oculus Quest 2 and the Windows PC platform. Which are two different platforms with diverse interactions to its users. The Oculus Quest 2 device is a standalone virtual reality device that lets the users play VR games without the need of a powerful gaming PC. This project is multiplayer game where players from both the platforms will be able to play with each other in a co-operative manner to progress through each level.</description>
@@ -8,49 +14,49 @@
         <video>https://www.youtube.com/embed/EqXi3o_1Jo4?si=vPy-j80CYHZH5kw5</video>
         <!-- Add more image elements if needed -->
     </project>
-    <project id="2">
+    <project id="3">
         <thumbnail>Project/Images/Endless_Thumbnail.png</thumbnail>
         <title>Endless Runner (OpenGL)</title>
         <description>This game is an endless runner, so the objective of the game is to run an many laps as possible without hitting other cars. There are 2 spline routes in the game using a Catmull-Rom spline . The player has the option to switch between lanes to avoid hitting the cars or to shoot them using “Space”. The player scores 100 points for each gem collected and 200 points for each lap that is completed. The game switched skyboxes every 10seconds to represent the time of day.</description>
         <video>https://www.youtube.com/embed/F_ASQX7izvE?si=MZDXU1TTzgSQsaXS</video>
         <!-- Add more image elements if needed -->
     </project>
-    <project id="3">
+    <project id="4">
         <thumbnail>Project/Images/BumbMania_Thumbnail.png</thumbnail>
         <title>Bump Mania (OpenGL)</title>
         <description>Bump Mania is a bumper car inspired game but with weapons and more destruction. The objective of the game is for the player to last in an environment of complete demolition. The player will have to attack enemies (in forms of other vehicles) before taking too much damage. There will static turret and moving turret that constantly fire at the player. </description>
         <video>https://www.youtube.com/embed/ArYfcVa0REw?si=_-nOhuzwokGJi8HE</video>
         <!-- Add more image elements if needed -->
     </project>
-    <project id="4">
+    <project id="5">
         <thumbnail>Project/Images/AR_Thumbnail.png</thumbnail>
         <title>AR Logistics</title>
         <description>This app was developed to help in logistics where the user can implement this to determine how many packages can be stored in his container. In this however, the user does not have to enter the dimensions of the packages manually. The user can simply scan the boxes in AR using a mobile device. Even the volume of the box can be calculated using the app.</description>
         <video>https://www.youtube.com/embed/IIT1FhKc974?si=QeZBT4nxgtEyKtyE</video>
         <!-- Add more image elements if needed -->
     </project>
-    <project id="5">
+    <project id="6">
         <thumbnail>Project/Images/trapped_Thumbnail.png</thumbnail>
         <title>Trapped Curse</title>
         <description>The core game-play consists of evading the obstacles and collecting the power ups with the help of the Pads that are located both on the Top and Bottom. Trapped Curse is a complete mobile arcade game. The settings are intractable and the stats get update in real-time. The player can purchase more gems when required and use them to unlock new characters. The characters can be changed at any point in the game.</description>
         <video>https://www.youtube.com/embed/yiS0D39SAkw?si=FXPmp_Xs7D3ABLQr</video>
         <!-- Add more image elements if needed -->
     </project>    
-    <project id="6">
+    <project id="7">
         <thumbnail>Project/Images/MonoGame_Thumbnail.png</thumbnail>
         <title>CATastrophe (MonoGame/C#)</title>
         <description>This game was developed with event and data driven approach. The game has 4 level and 2 types of AI enemies. With a High-score table implemented using serialization. The power ups, collectables, and the enemy has collision detection responses that are event listeners that is triggered on collision that the object is removed if it’s a power up or a collectible. The scoring system uses an event listener architecture since multiple events have to be called in different cases of a score is attained. </description>
         <video>https://www.youtube.com/embed/Zrr9zn4NCZo?si=WPb2p8z6Nwo7YWlJ</video>
         <!-- Add more image elements if needed -->
     </project>
-    <project id="7">
+    <project id="8">
         <thumbnail>Project/Images/VRDreams_Thumbnail.png</thumbnail>
         <title>VRDreams</title>
         <description>This game was developed for my major project in college. It is a shooter game that can be switched between 3600 and Cardboard VR mode. The game was initially started in Oculus Rift and HTC Vive. Since mobile VR is more accessible and has a wider range of target audience. </description>
         <video>https://www.youtube.com/embed/Rp6vEwY7f_w?si=eBxGB6OqbAyPhmfe</video>
         <!-- Add more image elements if needed -->
     </project>
-    <project id="8">
+    <project id="9">
         <thumbnail>Project/Images/scared_Thumbnail.png</thumbnail>
         <title>Too Hard to Scare</title>
         <description>Too Hard to Scare is a Harvest theme based game. Inspired from Doodle Jump, the player is required to safe the corn that has been stolen by the crows. The player is moved Left and Right with the keys A and D. The objective of the game is to push the corns to the ground. The game restarts when the player is invaded by the crows or even if he misses to land on a platform to jump higher. The game was programmed in C# script.</description>
