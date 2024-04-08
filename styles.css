@@ -1,11 +1,19 @@
 body {
-  font-family: Arial, Helvetica, sans-serif; /* Use Roboto Slab as the primary font */
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-  padding: 0; background-image: url('Project/Images/bg.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+  padding: 0; 
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
 header {
   color: #fff;
   padding: 20px;
@@ -182,6 +190,7 @@ section {
   font-size: 24px;
   text-align: left;
   color: #fff;
+  border-color: #bb86fc;
 }
 
 #slideshow{

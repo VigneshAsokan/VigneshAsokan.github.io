@@ -132,3 +132,86 @@ function showSlide(index, slideshowContainer) {
         slides[index].style.display = "block";
     }
 }
+
+const canvas = document.getElementById('background');
+  const ctx = canvas.getContext('2d');
+
+  // Set canvas size
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Create gradient
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, '#000000');
+  gradient.addColorStop(0.5, '#3a3a3a');
+  gradient.addColorStop(1, '#000000');
+
+  // Set up animated elements
+  const stars = [];
+  const numStars = 150;
+
+  // Generate random stars
+  for (let i = 0; i < numStars; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 2,
+      speed: Math.random() * 2,
+      opacity: Math.random() * 0.5 + 0.5 // Add opacity for twinkling effect
+    });
+  }
+
+  // Mouse position
+  let mouseX = 0;
+  let mouseY = 0;
+
+  // Track mouse movement
+  document.addEventListener('mousemove', function(event) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  });
+
+  // Draw animated background
+  function drawBackground() {
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Update and draw stars
+    stars.forEach(star => {
+      // Calculate distance to mouse pointer
+      const dx = star.x - mouseX;
+      const dy = star.y - mouseY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      // Move stars away from mouse pointer
+      if (distance < 50) {
+        star.x += dx * 0.01;
+        star.y += dy * 0.01;
+      }
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`; // Set opacity
+      ctx.fill();
+
+      // Update star position
+      star.x -= star.speed;
+
+      // Reset position if star moves out of canvas
+      if (star.x < -star.radius) {
+        star.x = canvas.width + star.radius;
+        star.y = Math.random() * canvas.height;
+      }
+    });
+
+    requestAnimationFrame(drawBackground);
+  }
+
+  // Start animation
+  drawBackground();
+
+  // Resize canvas on window resize
+  window.addEventListener('resize', function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
