@@ -14,6 +14,7 @@ canvas {
   left: 0;
   z-index: -1;
 }
+
 header {
   color: #fff;
   padding: 20px;
@@ -73,6 +74,10 @@ section {
   padding-bottom: 20px;
   font-size: 22px;
 }
+.about-description h2{
+  color: #39BC99;
+  font-size: 40px;
+}
 .about-description button{
   background-color: #FEA55F;
   border: none;
@@ -85,7 +90,21 @@ section {
   font-size: 18px;
   box-shadow: 0 0 20px rgba(254, 165, 95, 0.25);;
 }
-
+.about-links{
+  display: flex;
+  text-decoration: none;
+}
+.gitlink p{
+  color: #FEA55F;
+}
+.gitlink{
+  text-decoration: none;
+  color: #39BC99;
+  font-size: 20px;
+  align-items: center;
+  display: flex;
+  padding: 0px 5%;
+}
 
 .temp a{ 
   color: white;

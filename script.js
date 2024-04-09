@@ -103,7 +103,7 @@ function displayProjectDetails(xml, projectID) {
                 var projectLink = document.createElement("a");
                 projectLinkType.innerText = linkType;
                 projectLink.href = link;
-                projectLink.innerText = '\xa0' + '"' + link + '"';
+                projectLink.innerText = '\xa0' + '"' + link + '";';
                 linkDiv.appendChild(projectLinkType);
                 linkDiv.appendChild(projectLink);
                 linksDiv.appendChild(linkDiv);
@@ -162,86 +162,86 @@ function showSlide(index, slideshowContainer) {
 const canvas = document.getElementById('background');
 const ctx = canvas.getContext('2d');
 
-function random(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-// Set canvas size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Create gradient
-const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-gradient.addColorStop(0, '#011627');
-gradient.addColorStop(0.5, '#152B56');
-gradient.addColorStop(1, '#011627');
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, '#011627');
+  gradient.addColorStop(0.5, '#152B56');
+  gradient.addColorStop(1, '#011627');
+const particles = [];
+const particleCount = 100;
+const maxRadius = 5;
+const minRadius = 1;
+const speed = 0.5;
+const colors = ['#124A4A', '#43D9AD', '#1A2F5F', '#1E4266', '#fff'];
 
-const colors = ['#7F82BB', '#367E7F', '#732BF5', '#DA6CF0', '#75385B'];
-// Set up animated elements
-const stars = [];
-const numStars = 150;
-
-// Generate random stars
-for (let i = 0; i < numStars; i++) {
-stars.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random() * 3,
-    speed: Math.random() * 2,
-    colors: "white",
-    opacity: Math.random()// Add opacity for twinkling effect
-});
+function random(min, max) {
+  return Math.random() * (max - min) + min;
 }
 
-// Mouse position
-let mouseX = 0;
-let mouseY = 0;
+function createParticle() {
+  const particle = {
+    x: random(0, canvas.width),
+    y: random(0, canvas.height),
+    radius: random(minRadius, maxRadius),
+    color: colors[Math.floor(random(0, colors.length))],
+    speed: speed,
+    angle: random(0, 2 * Math.PI),
+  };
 
-// Track mouse movement
-document.addEventListener('mousemove', function(event) {
-mouseX = event.clientX;
-mouseY = event.clientY;
-});
+  particles.push(particle);
+}
 
-// Draw animated background
-function drawBackground() {
-ctx.fillStyle = gradient;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+function updateParticles() {
+  for (let i = 0; i < particles.length; i++) {
+    const particle = particles[i];
 
-// Update and draw stars
-stars.forEach(star => {
-    // Calculate distance to mouse pointer
-    const dx = star.x - mouseX;
-    const dy = star.y - mouseY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+    particle.x += Math.cos(particle.angle) * particle.speed;
+    particle.y += Math.sin(particle.angle) * particle.speed;
 
-    // Move stars away from mouse pointer
-    if (distance < 150) {
-    star.x -= dx * 0.01;
-    star.y -= dy * 0.01;
+    if (particle.x < -particle.radius || particle.x > canvas.width + particle.radius || particle.y < -particle.radius || particle.y > canvas.height + particle.radius) {
+      createParticle();
+      particles.splice(i, 1);
+      i--;
+      continue;
     }
 
     ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-    ctx.fillStyle = star.colors;
-    ctx.fillStyle.opacity = star.opacity;
+    ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2, false);
+    ctx.fillStyle = particle.color;
     ctx.fill();
-
-    // Update star position
-    star.x -= star.speed;
-
-    // Reset position if star moves out of canvas
-    if (star.x < -star.radius) {
-    star.x = canvas.width + star.radius;
-    star.y = Math.random() * canvas.height;
-    }
-});
-
-requestAnimationFrame(drawBackground);
+  }
 }
 
-// Start animation
-drawBackground();
+function animate() {
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  updateParticles();
+  requestAnimationFrame(animate);
+}
 
+for (let i = 0; i < particleCount; i++) {
+  createParticle();
+}
+
+animate();
+
+document.addEventListener('mousemove', (e) => {
+  for (let i = 0; i < particles.length; i++) {
+    const particle = particles[i];
+    const dx = particle.x - e.clientX;
+    const dy = particle.y - e.clientY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < 200) {
+      particle.speed = 1;
+      particle.angle = Math.atan2(e.clientY - particle.y, e.clientX - particle.x);
+    } else {
+      particle.speed = speed;
+    }
+ }
+});
 // Resize canvas on window resize
 window.addEventListener('resize', function() {
 canvas.width = window.innerWidth;
