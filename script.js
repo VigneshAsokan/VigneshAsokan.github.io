@@ -30,22 +30,27 @@ function parseProjects(xml) {
         const image = project.getElementsByTagName('thumbnail')[0].textContent;
 
         // Create project element
+        const tempDiv = document.createElement('div');
+        tempDiv.classList.add('temp');
+        tempDiv.className = "temp";
         const projectDiv = document.createElement('div');
         projectDiv.classList.add('project');
         projectDiv.className = "project";
-        var ahref = document.createElement('a');
+        const ahref = document.createElement('a');
         ahref.href = "project.html?id=" + (i + 1);
         const img = document.createElement('img');
         img.src = image;
         img.alt = name;
         const projectName = document.createElement('h3');
         projectName.textContent = name;
-        
-        // Append elements to project grid
-        ahref.appendChild(img);
-        projectDiv.appendChild(ahref);
+        projectName.style.textDecoration = "none";
+        ahref.style.textDecoration = "none";
+
+        projectDiv.appendChild(img);
         projectDiv.appendChild(projectName);
-        projectGrid.appendChild(projectDiv);
+        ahref.appendChild(projectDiv);
+        tempDiv.appendChild(ahref);
+        projectGrid.appendChild(tempDiv);
     }
 }
 
@@ -79,10 +84,31 @@ function displayProjectDetails(xml, projectID) {
             var description = projects[i].getElementsByTagName("description")[0].childNodes[0].nodeValue;
             var images = projects[i].getElementsByTagName("image");
             var videos = projects[i].getElementsByTagName("video");
+            var projectLinks = projects[i].getElementsByTagName("link");
 
             document.getElementById("project-title").innerText = title;
-            document.getElementById("project-description").innerText = description;
-
+            var descriptionDiv = document.getElementById("project-description");
+            descriptionDiv.innerText = description;
+            
+            
+            for(var j = 0; j < projectLinks.length; j+=2)
+            {
+                var linkType = projectLinks[j].childNodes[0].nodeValue;
+                var link = projectLinks[j+1].childNodes[0].nodeValue;
+                var linksDiv = document.getElementById("project-links");
+                var linkDiv = document.createElement("div");
+                linkDiv.classList.add("project-link");
+                linkDiv.className = "project-link";
+                var projectLinkType = document.createElement("p");
+                var projectLink = document.createElement("a");
+                projectLinkType.innerText = linkType;
+                projectLink.href = link;
+                projectLink.innerText = '\xa0' + '"' + link + '"';
+                linkDiv.appendChild(projectLinkType);
+                linkDiv.appendChild(projectLink);
+                linksDiv.appendChild(linkDiv);
+            }            
+            
             var videoContainer = document.getElementById("video-container");
             var slideshowContainer = document.getElementById("project-slideshow");
             var thumbnailsContainer = document.getElementById("thumbnail-container");
@@ -134,84 +160,90 @@ function showSlide(index, slideshowContainer) {
 }
 
 const canvas = document.getElementById('background');
-  const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
-  // Set canvas size
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  // Create gradient
-  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  gradient.addColorStop(0, '#000000');
-  gradient.addColorStop(0.5, '#3a3a3a');
-  gradient.addColorStop(1, '#000000');
-
-  // Set up animated elements
-  const stars = [];
-  const numStars = 150;
-
-  // Generate random stars
-  for (let i = 0; i < numStars; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 2,
-      speed: Math.random() * 2,
-      opacity: Math.random() * 0.5 + 0.5 // Add opacity for twinkling effect
-    });
+function random(min, max) {
+    return Math.random() * (max - min) + min;
   }
+// Set canvas size
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  // Mouse position
-  let mouseX = 0;
-  let mouseY = 0;
+// Create gradient
+const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+gradient.addColorStop(0, '#011627');
+gradient.addColorStop(0.5, '#152B56');
+gradient.addColorStop(1, '#011627');
 
-  // Track mouse movement
-  document.addEventListener('mousemove', function(event) {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-  });
+const colors = ['#7F82BB', '#367E7F', '#732BF5', '#DA6CF0', '#75385B'];
+// Set up animated elements
+const stars = [];
+const numStars = 150;
 
-  // Draw animated background
-  function drawBackground() {
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+// Generate random stars
+for (let i = 0; i < numStars; i++) {
+stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 3,
+    speed: Math.random() * 2,
+    colors: "white",
+    opacity: Math.random()// Add opacity for twinkling effect
+});
+}
 
-    // Update and draw stars
-    stars.forEach(star => {
-      // Calculate distance to mouse pointer
-      const dx = star.x - mouseX;
-      const dy = star.y - mouseY;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+// Mouse position
+let mouseX = 0;
+let mouseY = 0;
 
-      // Move stars away from mouse pointer
-      if (distance < 50) {
-        star.x += dx * 0.01;
-        star.y += dy * 0.01;
-      }
+// Track mouse movement
+document.addEventListener('mousemove', function(event) {
+mouseX = event.clientX;
+mouseY = event.clientY;
+});
 
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`; // Set opacity
-      ctx.fill();
+// Draw animated background
+function drawBackground() {
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Update star position
-      star.x -= star.speed;
+// Update and draw stars
+stars.forEach(star => {
+    // Calculate distance to mouse pointer
+    const dx = star.x - mouseX;
+    const dy = star.y - mouseY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
 
-      // Reset position if star moves out of canvas
-      if (star.x < -star.radius) {
-        star.x = canvas.width + star.radius;
-        star.y = Math.random() * canvas.height;
-      }
-    });
+    // Move stars away from mouse pointer
+    if (distance < 150) {
+    star.x -= dx * 0.01;
+    star.y -= dy * 0.01;
+    }
 
-    requestAnimationFrame(drawBackground);
-  }
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+    ctx.fillStyle = star.colors;
+    ctx.fillStyle.opacity = star.opacity;
+    ctx.fill();
 
-  // Start animation
-  drawBackground();
+    // Update star position
+    star.x -= star.speed;
 
-  // Resize canvas on window resize
-  window.addEventListener('resize', function() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+    // Reset position if star moves out of canvas
+    if (star.x < -star.radius) {
+    star.x = canvas.width + star.radius;
+    star.y = Math.random() * canvas.height;
+    }
+});
+
+requestAnimationFrame(drawBackground);
+}
+
+// Start animation
+drawBackground();
+
+// Resize canvas on window resize
+window.addEventListener('resize', function() {
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+});
