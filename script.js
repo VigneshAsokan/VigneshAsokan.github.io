@@ -37,7 +37,7 @@ function parseProjects(xml) {
         projectDiv.classList.add('project');
         projectDiv.className = "project";
         const ahref = document.createElement('a');
-        ahref.href = "project.html?id=" + (i + 1);
+        ahref.href = "project.html?id=" + project.getAttribute('id');
         const img = document.createElement('img');
         img.src = image;
         img.alt = name;
